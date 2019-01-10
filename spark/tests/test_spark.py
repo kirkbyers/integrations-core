@@ -479,20 +479,20 @@ SPARK_JOB_SUCCEEDED_METRIC_TAGS = [
 
 SPARK_STAGE_RUNNING_METRIC_VALUES = {
     'spark.stage.count': 3,
-    'spark.stage.num_active_tasks': 3*3,
-    'spark.stage.num_complete_tasks': 4*3,
-    'spark.stage.num_failed_tasks': 5*3,
-    'spark.stage.executor_run_time': 6*3,
-    'spark.stage.input_bytes': 7*3,
-    'spark.stage.input_records': 8*3,
-    'spark.stage.output_bytes': 9*3,
-    'spark.stage.output_records': 10*3,
-    'spark.stage.shuffle_read_bytes': 11*3,
-    'spark.stage.shuffle_read_records': 12*3,
-    'spark.stage.shuffle_write_bytes': 13*3,
-    'spark.stage.shuffle_write_records': 14*3,
-    'spark.stage.memory_bytes_spilled': 15*3,
-    'spark.stage.disk_bytes_spilled': 16*3,
+    'spark.stage.num_active_tasks': 3,
+    'spark.stage.num_complete_tasks': 4,
+    'spark.stage.num_failed_tasks': 5,
+    'spark.stage.executor_run_time': 6,
+    'spark.stage.input_bytes': 7,
+    'spark.stage.input_records': 8,
+    'spark.stage.output_bytes': 9,
+    'spark.stage.output_records': 10,
+    'spark.stage.shuffle_read_bytes': 11,
+    'spark.stage.shuffle_read_records': 12,
+    'spark.stage.shuffle_write_bytes': 13,
+    'spark.stage.shuffle_write_records': 14,
+    'spark.stage.memory_bytes_spilled': 15,
+    'spark.stage.disk_bytes_spilled': 16,
 }
 
 SPARK_STAGE_RUNNING_METRIC_TAGS = [
@@ -503,20 +503,20 @@ SPARK_STAGE_RUNNING_METRIC_TAGS = [
 
 SPARK_STAGE_COMPLETE_METRIC_VALUES = {
     'spark.stage.count': 2,
-    'spark.stage.num_active_tasks': 100*2,
-    'spark.stage.num_complete_tasks': 101*2,
-    'spark.stage.num_failed_tasks': 102*2,
-    'spark.stage.executor_run_time': 103*2,
-    'spark.stage.input_bytes': 104*2,
-    'spark.stage.input_records': 105*2,
-    'spark.stage.output_bytes': 106*2,
-    'spark.stage.output_records': 107*2,
-    'spark.stage.shuffle_read_bytes': 108*2,
-    'spark.stage.shuffle_read_records': 109*2,
-    'spark.stage.shuffle_write_bytes': 110*2,
-    'spark.stage.shuffle_write_records': 111*2,
-    'spark.stage.memory_bytes_spilled': 112*2,
-    'spark.stage.disk_bytes_spilled': 113*2,
+    'spark.stage.num_active_tasks': 100,
+    'spark.stage.num_complete_tasks': 101,
+    'spark.stage.num_failed_tasks': 102,
+    'spark.stage.executor_run_time': 103,
+    'spark.stage.input_bytes': 104,
+    'spark.stage.input_records': 105,
+    'spark.stage.output_bytes': 106,
+    'spark.stage.output_records': 107,
+    'spark.stage.shuffle_read_bytes': 108,
+    'spark.stage.shuffle_read_records': 109,
+    'spark.stage.shuffle_write_bytes': 110,
+    'spark.stage.shuffle_write_records': 111,
+    'spark.stage.memory_bytes_spilled': 112,
+    'spark.stage.disk_bytes_spilled': 113,
 }
 
 SPARK_STAGE_COMPLETE_METRIC_TAGS = [
@@ -590,12 +590,6 @@ def test_yarn(aggregator):
     with mock.patch('requests.get', yarn_requests_get_mock):
         c = SparkCheck('spark', None, {}, [YARN_CONFIG])
         c.check(YARN_CONFIG)
-
-        # Check the running job metrics
-        for metric, value in iteritems(SPARK_JOB_RUNNING_METRIC_VALUES):
-            aggregator.assert_metric(
-                metric,
-                tags=SPARK_JOB_RUNNING_METRIC_TAGS + CUSTOM_TAGS, value=value)
 
         # Check the succeeded job metrics
         for metric, value in iteritems(SPARK_JOB_SUCCEEDED_METRIC_VALUES):
