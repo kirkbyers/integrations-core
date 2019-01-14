@@ -1,0 +1,36 @@
+init_config:
+
+instances:
+  ## @param db - string - required
+  ## The name of the database to establish a connection with.
+  #
+  - db: <DATABASE_NAME>
+
+  ## @param username - string - required
+  ## The database user to authenticate as.
+  #
+    username: <USERNAME>
+
+  ## @param password - string - required
+  ## The password of `username`.
+  #
+    password: <PASSWORD>
+
+  ## @param host - string - optional
+  ## The hostname used to connect to a remote or uncataloged database.
+  #
+  #  host: <HOSTNAME>
+
+  ## @param port - string - optional - default: 50000
+  ## The port used to connect to a remote or uncataloged database.
+  #
+  #  port: 50000
+
+  ## @param tags - list of key:value string - optional
+  ## List of tags to attach to every metric and service check emitted by this instance.
+  ##
+  ## Learn more about tagging at https://docs.datadoghq.com/tagging
+  #
+  #  tags:
+  #    - <KEY_1>:<VALUE_1>
+  #    - <KEY_2>:<VALUE_2>
